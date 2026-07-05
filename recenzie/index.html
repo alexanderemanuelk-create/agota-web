@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recenzie – Agota Food Truck</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../translate.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="../index.html#domov" class="brand">
+        <img src="../photos/467646005_1089915582800374_6298250768242404663_n.jpg" alt="Agota Food Truck" class="brand-logo" />
+      </a>
+      <button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" type="button">
+        <span class="sr-only">Otvoriť menu</span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" id="primary-navigation" data-visible="false">
+        <a href="../index.html#domov" data-en="Home">Domov</a>
+        <a href="../index.html#historia" data-en="History">História</a>
+        <a href="../index.html#menu">Menu</a>
+        <a href="../index.html#galeria" data-en="Gallery">Galéria</a>
+        <a href="./" data-en="Reviews">Recenzie</a>
+        <a href="../index.html#lokalita" data-en="Location">Lokalita</a>
+        <div class="lang-switch" role="group" aria-label="Jazyk">
+          <button type="button" class="lang-btn is-active" data-lang="sk">SK</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="lt">LT</button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="review-page">
+      <div class="review-layout">
+        <div class="review-col-left">
+          <h1 data-en="Tell us about your visit">Povedzte nám, aká bola návšteva?</h1>
+          <div class="review-photo-frame">
+            <span data-en="Photo">Fotka</span>
+          </div>
+        </div>
+
+        <div class="review-col-right">
+          <div class="review-rating">
+            <h2 data-en="How would you describe your experience with us?">Ako by ste opísali vašu skúsenosť u nás?</h2>
+            <div class="rating-circles" data-rating="0">
+              <button type="button" class="rating-circle" data-value="1" aria-label="1 z 5"></button>
+              <button type="button" class="rating-circle" data-value="2" aria-label="2 z 5"></button>
+              <button type="button" class="rating-circle" data-value="3" aria-label="3 z 5"></button>
+              <button type="button" class="rating-circle" data-value="4" aria-label="4 z 5"></button>
+              <button type="button" class="rating-circle" data-value="5" aria-label="5 z 5"></button>
+            </div>
+          </div>
+
+          <div class="review-text-block">
+            <h2 data-en="Write us a review">Napíšte nám recenziu</h2>
+            <textarea class="review-textarea" rows="8" placeholder="Podeľte sa o svoje skúsenosti..." data-en-placeholder="Share your experience..."></textarea>
+
+            <h3 data-en="Give your review a title">Dajte svojej recenzii názov</h3>
+            <input type="text" class="review-title-input" placeholder="Dajte nám predstavu o vašej skúsenosti" data-en-placeholder="Give us an idea of your experience" />
+
+            <h3 data-en="Add photos">Pridať fotografie</h3>
+            <p class="review-optional" data-en="Optional">Voliteľné</p>
+            <label class="review-upload">
+              <input type="file" accept="image/*" multiple hidden />
+              <span class="review-upload-icon" aria-hidden="true">🖼</span>
+              <span class="review-upload-title" data-en="Click to add photos">Kliknite pre pridanie fotografií</span>
+              <span class="review-upload-hint" data-en="or drag them here">alebo ich potiahnite</span>
+            </label>
+
+            <label class="checkbox-label review-consent">
+              <input type="checkbox" name="consent" required />
+              <span data-en="I honestly declare that this review is based solely on my personal experience and expresses my genuine opinion. I have no ownership or personal connection to this business and did not receive any financial or material reward for writing it.">Čestne vyhlasujem, že táto recenzia vychádza výhradne z mojej osobnej skúsenosti a vyjadruje môj skutočný názor. Nie som s týmto podnikom nijako majetkovo ani osobne prepojený a za jej napísanie som nedostal žiadnu finančnú ani materiálnu odmenu.</span>
+            </label>
+
+            <button type="button" class="hero-cta review-submit" data-en="Continue">Pokračovať</button>
+            <p class="form-message" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="contact-details">
+        <div>
+          <strong data-en="Phone">Telefón</strong>
+          <p>+421 900 123 456</p>
+        </div>
+        <div>
+          <strong>Email</strong>
+          <p>info@agota-web.sk</p>
+        </div>
+        <div>
+          <strong data-en="Address">Adresa</strong>
+          <p>Liptovská Teplička, 059 40</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          <a href="#" data-en="Terms and conditions">Obchodné podmienky</a>
+          <a href="#" data-en="Privacy policy">Ochrana osobných údajov</a>
+        </p>
+        <p data-en="© 2026 Agota Food Truck. All rights reserved.">© 2026 Agota Food Truck. Všetky práva vyhradené.</p>
+      </div>
+    </footer>
+
+    <script>
+      const navToggle = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('primary-navigation');
+      const navLinks = nav.querySelectorAll('a');
+
+      function toggleNav(open) {
+        nav.setAttribute('data-visible', String(open));
+        navToggle.setAttribute('aria-expanded', String(open));
+        navToggle.querySelector('.sr-only').textContent = open ? 'Zavrieť menu' : 'Otvoriť menu';
+      }
+
+      if (navToggle && nav) {
+        navToggle.addEventListener('click', () => {
+          const isVisible = nav.getAttribute('data-visible') === 'true';
+          toggleNav(!isVisible);
+        });
+      }
+
+      navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 720) {
+            toggleNav(false);
+          }
+        });
+      });
+
+      const ratingGroup = document.querySelector('.rating-circles');
+      if (ratingGroup) {
+        const circles = Array.from(ratingGroup.querySelectorAll('.rating-circle'));
+        let selected = 0;
+
+        function paint(upTo) {
+          circles.forEach((circle, index) => {
+            circle.classList.toggle('is-filled', index < upTo);
+          });
+        }
+
+        circles.forEach((circle, index) => {
+          circle.addEventListener('mouseenter', () => paint(index + 1));
+          circle.addEventListener('click', () => {
+            selected = index + 1;
+            ratingGroup.setAttribute('data-rating', String(selected));
+            paint(selected);
+          });
+        });
+
+        ratingGroup.addEventListener('mouseleave', () => paint(selected));
+      }
+
+      const submitButton = document.querySelector('.review-submit');
+      if (submitButton) {
+        submitButton.addEventListener('click', () => {
+          const isEn = window.agotaCurrentLang && window.agotaCurrentLang() === 'en';
+          const formMessage = document.querySelector('.review-text-block .form-message');
+          const consent = document.querySelector('.review-consent input[type="checkbox"]');
+
+          if (consent && !consent.checked) {
+            if (formMessage) {
+              formMessage.textContent = isEn
+                ? 'Please confirm the honesty declaration before submitting.'
+                : 'Prosím, potvrďte čestné vyhlásenie pred odoslaním.';
+              formMessage.classList.remove('form-message--success');
+            }
+            return;
+          }
+
+          const rating = ratingGroup ? ratingGroup.getAttribute('data-rating') : '0';
+          const title = document.querySelector('.review-title-input').value.trim();
+          const text = document.querySelector('.review-textarea').value.trim();
+
+          const subject = 'Nová recenzia – Agota Food Truck' + (title ? ' – ' + title : '');
+          const bodyLines = [
+            'Hodnotenie: ' + (rating || '0') + ' / 5',
+            title ? 'Názov recenzie: ' + title : null,
+            '',
+            text || '(recenzia nebola vyplnená)',
+          ].filter((line) => line !== null);
+
+          const mailto = 'mailto:agotatruck@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyLines.join('\n'));
+
+          if (formMessage) {
+            formMessage.textContent = isEn
+              ? 'Opening your email client to send the review to agotatruck@gmail.com...'
+              : 'Otvára sa e-mailový klient na odoslanie recenzie na agotatruck@gmail.com...';
+            formMessage.classList.add('form-message--success');
+          }
+
+          window.location.href = mailto;
+        });
+      }
+    </script>
+  </body>
+</html>

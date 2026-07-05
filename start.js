@@ -30,7 +30,7 @@ function findFreePort(start = 8000, end = 8100) {
 
 (async () => {
   const port = await findFreePort();
-  const args = ['./', '-p', String(port), '--silent', '-o'];
+  const args = ['./', '-p', String(port), '--silent', '-o', '-c-1'];
 
   // On Windows the executable shim is http-server.cmd; avoid using a shell so
   // paths with spaces are handled correctly.

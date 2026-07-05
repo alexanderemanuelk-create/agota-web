@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agota Web</title>
+    <title>Agota Food Truck</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="translate.js" defer></script>
   </head>
   <body>
     <header class="site-header">
-      <div class="brand">
-        <div class="brand-mark"></div>
-        <span>Agota</span>
-      </div>
+      <a href="#domov" class="brand">
+        <img src="photos/467646005_1089915582800374_6298250768242404663_n.jpg" alt="Agota Food Truck" class="brand-logo" />
+      </a>
       <button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" type="button">
         <span class="sr-only">Otvoriť menu</span>
         <span></span>
@@ -19,181 +19,154 @@
         <span></span>
       </button>
       <nav class="site-nav" id="primary-navigation" data-visible="false">
-        <a href="#domov">Domov</a>
+        <a href="#domov" data-en="Home">Domov</a>
+        <a href="#historia" data-en="History">História</a>
         <a href="#menu">Menu</a>
-        <a href="#onas">O nás</a>
-        <a href="#galeria">Galéria</a>
-        <a href="#rezervacia">Rezervácia / Objednať</a>
-        <a href="#kontakt" class="contact-link">Kontakt</a>
+        <a href="#galeria" data-en="Gallery">Galéria</a>
+        <a href="recenzie/" data-en="Reviews">Recenzie</a>
+        <a href="#lokalita" data-en="Location">Lokalita</a>
+        <div class="lang-switch" role="group" aria-label="Jazyk">
+          <button type="button" class="lang-btn is-active" data-lang="sk">SK</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="lt">LT</button>
+        </div>
       </nav>
     </header>
 
     <main>
       <section class="hero" id="domov">
-        <div class="hero-copy">
-          <span class="eyebrow">Profesionálna estetika</span>
-          <h1>Originálny a minimalistický web</h1>
-          <p>Priestranné rozloženie, silné farby a čistý vizuál pre modernú prezentačnú stránku.</p>
-          <div class="hero-actions">
-            <a href="#rezervacia" class="hero-cta">Rezervujte teraz</a>
-            <a href="#galeria" class="hero-secondary">Pozrieť galériu</a>
-          </div>
+        <img src="photos/467646005_1089915582800374_6298250768242404663_n.jpg" alt="Agota Food Truck" class="hero-logo" />
+        <h1>Agota Food Truck</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div class="hero-actions">
+          <a href="#menu" class="hero-cta">Menu</a>
         </div>
-        <div class="hero-panel">
-          <div class="hero-card">
-            <h3>Agota</h3>
-            <p>Perfektný priestor pre klientov, ktorí hľadajú pôsobivý digitálny zážitok.</p>
-            <span>Web dizajn, branding, prezentácia</span>
+      </section>
+
+      <section class="section" id="historia">
+        <div class="section-header">
+          <span class="section-label" data-en="History">História</span>
+          <h2 data-en="Our History">Naša história</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span>12+</span>
+            <p data-en="Years of experience">Rokov skúseností</p>
+          </div>
+          <div class="stat-card">
+            <span>150+</span>
+            <p data-en="Happy clients">Spokojných klientov</p>
+          </div>
+          <div class="stat-card">
+            <span>24/7</span>
+            <p data-en="Availability &amp; support">Dostupnosť a podpora</p>
           </div>
         </div>
       </section>
 
-      <section class="section" id="menu">
+      <section class="section section-alt" id="menu">
         <div class="section-header">
-          <div>
-            <span class="section-label">Menu</span>
-            <h2>Prehľad služieb a ponuky</h2>
-          </div>
-          <p>Vybrané kategórie s jasnou štruktúrou, navrhnuté tak, aby zákazník rýchlo našiel to, čo potrebuje.</p>
+          <span class="section-label">Menu</span>
+          <h2 data-en="Our Menu">Naše menu</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
         </div>
 
         <div class="menu-grid">
           <article class="menu-card">
-            <h3>Predjedlá</h3>
-            <p>Čerstvé a kvalitné začiatky pre prvý dojem.</p>
+            <h3 data-en="Starters">Predjedlá</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
           </article>
           <article class="menu-card">
-            <h3>Hlavné jedlá</h3>
-            <p>Starostlivo vybrané klasiky a moderné kombinácie chutí.</p>
+            <h3 data-en="Main Courses">Hlavné jedlá</h3>
+            <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
           </article>
           <article class="menu-card">
-            <h3>Dezerty</h3>
-            <p>Elegantné zakončenie spokojného zážitku.</p>
+            <h3 data-en="Desserts">Dezerty</h3>
+            <p>Ut enim ad minim veniam quis nostrud exercitation.</p>
           </article>
           <article class="menu-card">
-            <h3>Nápoje</h3>
-            <p>Osvieženie s dôrazom na dizajn a vyváženú ponuku.</p>
+            <h3 data-en="Drinks">Nápoje</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate.</p>
           </article>
         </div>
-      </section>
 
-      <section class="section section-alt" id="onas">
-        <div class="section-split">
-          <div>
-            <span class="section-label">O nás</span>
-            <h2>Váš partner pre čistý a prepracovaný dizajn</h2>
-            <p>Pomáhame budovať prezentácie, ktoré vyzerajú profesionálne a zanechávajú dojem jednoduchosti. Pracujeme s farbami, ktoré podporujú dôveru a silný vizuálny charakter.</p>
-          </div>
-          <div class="stats-grid">
-            <div class="stat-card">
-              <span>12+</span>
-              <p>Rokov skúseností</p>
-            </div>
-            <div class="stat-card">
-              <span>150+</span>
-              <p>Spokojných klientov</p>
-            </div>
-            <div class="stat-card">
-              <span>24/7</span>
-              <p>Dostupnosť a podpora</p>
-            </div>
-          </div>
+        <div class="hero-actions">
+          <a href="#" class="hero-cta" data-en="Discover now">Objaviť teraz</a>
+          <a href="#" class="hero-secondary" data-en="Bistro Menu">Bistro menu</a>
         </div>
       </section>
 
       <section class="section" id="galeria">
         <div class="section-header">
-          <div>
-            <span class="section-label">Galéria</span>
-            <h2>Ukážka atmosféry a detailov</h2>
-          </div>
-          <p>Výber vizuálnych konceptov, ktoré zvýrazňujú váš obsah bez rušivých prvkov.</p>
+          <span class="section-label" data-en="Gallery">Galéria</span>
+          <h2 data-en="Gallery">Galéria</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
 
         <div class="gallery-grid">
-          <div class="gallery-item gallery-tall"></div>
           <div class="gallery-item"></div>
           <div class="gallery-item"></div>
-          <div class="gallery-item gallery-wide"></div>
+          <div class="gallery-item"></div>
+          <div class="gallery-item"></div>
+          <div class="gallery-item"></div>
+          <div class="gallery-item"></div>
         </div>
       </section>
 
-      <section class="section section-alt" id="rezervacia">
+      <section class="section section-alt" id="lokalita">
         <div class="section-header">
-          <div>
-            <span class="section-label">Rezervácia / Objednať</span>
-            <h2>Rezervujte si svoje miesto alebo službu</h2>
-          </div>
-          <p>Rýchly a čistý formulár, ktorý uľahčí zákazníkom objednať alebo rezervovať presne to, čo potrebujú.</p>
+          <span class="section-label" data-en="Location">Lokalita</span>
+          <h2 data-en="Where to find us">Kde nás nájdete</h2>
+          <p>Liptovská Teplička, 059 40</p>
         </div>
 
-        <div class="form-panel">
-          <form class="contact-form">
-            <div class="form-grid">
-              <label>
-                Meno
-                <input type="text" name="name" placeholder="Vaše meno" required />
-              </label>
-              <label>
-                Email
-                <input type="email" name="email" placeholder="kontakt@example.com" required />
-              </label>
-              <label>
-                Dátum
-                <input type="date" name="date" required />
-              </label>
-              <label>
-                Počet osôb
-                <input type="number" name="people" min="1" placeholder="2" required />
-              </label>
-            </div>
-            <label>
-              Poznámka
-              <textarea name="message" rows="5" placeholder="Vaša správa alebo požiadavka"></textarea>
-            </label>
-            <button type="submit" class="hero-cta">Odoslať rezerváciu</button>
-            <p class="form-message" aria-live="polite"></p>
-          </form>
+        <div class="map-panel">
+          <iframe
+            class="map-frame"
+            title="Mapa lokality"
+            src="https://www.google.com/maps?q=48.964824,20.090021&z=15&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+        <div class="hero-actions">
+          <a href="https://www.google.com/maps/search/?api=1&query=48.964824,20.090021" target="_blank" rel="noopener noreferrer" class="hero-cta" data-en="Open in Google Maps">Otvoriť v Google Maps</a>
         </div>
       </section>
 
-      <section class="section" id="kontakt">
-        <div class="section-split contact-split">
-          <div>
-            <span class="section-label">Kontakt</span>
-            <h2>Sme pripravení odpovedať</h2>
-            <p>Ak máte otázky alebo chcete prediskutovať detaily, radi sa ozveme čo najskôr.</p>
-            <div class="contact-details">
-              <div>
-                <strong>Telefón</strong>
-                <p>+421 900 123 456</p>
-              </div>
-              <div>
-                <strong>Email</strong>
-                <p>info@agota-web.sk</p>
-              </div>
-              <div>
-                <strong>Adresa</strong>
-                <p>Bratislavská 12, 821 08 Bratislava</p>
-              </div>
-            </div>
-          </div>
-          <div class="contact-card">
-            <p>Máte otázku k menu, galérii alebo rezervácii? Pošlite správu a my sa vám ozveme do 24 hodín.</p>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="site-footer">
-      <p>© 2026 Agota Web. Všetky práva vyhradené.</p>
+      <div class="contact-details">
+        <div>
+          <strong data-en="Phone">Telefón</strong>
+          <p>+421 900 123 456</p>
+        </div>
+        <div>
+          <strong>Email</strong>
+          <p>info@agota-web.sk</p>
+        </div>
+        <div>
+          <strong data-en="Address">Adresa</strong>
+          <p>Liptovská Teplička, 059 40</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          <a href="#" data-en="Terms and conditions">Obchodné podmienky</a>
+          <a href="#" data-en="Privacy policy">Ochrana osobných údajov</a>
+        </p>
+        <p data-en="© 2026 Agota Food Truck. All rights reserved.">© 2026 Agota Food Truck. Všetky práva vyhradené.</p>
+      </div>
     </footer>
     <script>
       const navToggle = document.querySelector('.nav-toggle');
       const nav = document.getElementById('primary-navigation');
       const navLinks = nav.querySelectorAll('a');
-      const form = document.querySelector('.contact-form');
-      const formMessage = document.querySelector('.form-message');
 
       function toggleNav(open) {
         nav.setAttribute('data-visible', String(open));
@@ -215,29 +188,6 @@
           }
         });
       });
-
-      if (form) {
-        form.addEventListener('submit', (event) => {
-          event.preventDefault();
-
-          if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
-          }
-
-          const submitButton = form.querySelector('button[type="submit"]');
-          submitButton.disabled = true;
-          submitButton.textContent = 'Odosielanie...';
-
-          window.setTimeout(() => {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Odoslať rezerváciu';
-            formMessage.textContent = 'Ďakujeme! Vaša rezervácia bola odoslaná. Ozveme sa vám čoskoro.';
-            formMessage.classList.add('form-message--success');
-            form.reset();
-          }, 900);
-        });
-      }
     </script>
   </body>
 </html>
