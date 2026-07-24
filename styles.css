@@ -563,6 +563,12 @@ textarea {
   gap: 3rem;
 }
 
+.review-col-right > form {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
 .review-rating h2,
 .review-text-block h2 {
   margin: 0 0 1.25rem;
@@ -615,7 +621,7 @@ textarea {
   color: var(--dark);
 }
 
-.review-title-input {
+.review-email-input {
   display: block;
   width: 100%;
   max-width: 36rem;
@@ -627,7 +633,7 @@ textarea {
   color: var(--dark);
 }
 
-.review-title-input:focus {
+.review-email-input:focus {
   outline: 2px solid rgba(160, 29, 32, 0.2);
   border-color: var(--primary);
 }

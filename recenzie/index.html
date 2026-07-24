@@ -6,6 +6,7 @@
     <title>Recenzie – Agota Food Truck</title>
     <link rel="stylesheet" href="../styles.css" />
     <script src="../translate.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   </head>
   <body>
     <header class="site-header">
@@ -43,41 +44,44 @@
         </div>
 
         <div class="review-col-right">
-          <div class="review-rating">
-            <h2 data-en="How would you describe your experience with us?">Ako by ste opísali vašu skúsenosť u nás?</h2>
-            <div class="rating-circles" data-rating="0">
-              <button type="button" class="rating-circle" data-value="1" aria-label="1 z 5"></button>
-              <button type="button" class="rating-circle" data-value="2" aria-label="2 z 5"></button>
-              <button type="button" class="rating-circle" data-value="3" aria-label="3 z 5"></button>
-              <button type="button" class="rating-circle" data-value="4" aria-label="4 z 5"></button>
-              <button type="button" class="rating-circle" data-value="5" aria-label="5 z 5"></button>
+          <form id="recenzia-form">
+            <div class="review-rating">
+              <h2 data-en="How would you describe your experience with us?">Ako by ste opísali vašu skúsenosť u nás?</h2>
+              <div class="rating-circles" data-rating="0">
+                <button type="button" class="rating-circle" data-value="1" aria-label="1 z 5"></button>
+                <button type="button" class="rating-circle" data-value="2" aria-label="2 z 5"></button>
+                <button type="button" class="rating-circle" data-value="3" aria-label="3 z 5"></button>
+                <button type="button" class="rating-circle" data-value="4" aria-label="4 z 5"></button>
+                <button type="button" class="rating-circle" data-value="5" aria-label="5 z 5"></button>
+              </div>
+              <input type="hidden" name="rating" id="rating-input" value="0" />
             </div>
-          </div>
 
-          <div class="review-text-block">
-            <h2 data-en="Write us a review">Napíšte nám recenziu</h2>
-            <textarea class="review-textarea" rows="8" placeholder="Podeľte sa o svoje skúsenosti..." data-en-placeholder="Share your experience..."></textarea>
+            <div class="review-text-block">
+              <h2 data-en="Write us a review">Napíšte nám recenziu</h2>
+              <textarea class="review-textarea" name="message" id="message" rows="8" placeholder="Podeľte sa o svoje skúsenosti..." data-en-placeholder="Share your experience..." required></textarea>
 
-            <h3 data-en="Give your review a title">Dajte svojej recenzii názov</h3>
-            <input type="text" class="review-title-input" placeholder="Dajte nám predstavu o vašej skúsenosti" data-en-placeholder="Give us an idea of your experience" />
+              <h3 data-en="Your email">Váš e-mail</h3>
+              <input type="email" class="review-email-input" name="email" id="email" placeholder="Zadajte váš e-mail" data-en-placeholder="Enter your email" required />
 
-            <h3 data-en="Add photos">Pridať fotografie</h3>
-            <p class="review-optional" data-en="Optional">Voliteľné</p>
-            <label class="review-upload">
-              <input type="file" accept="image/*" multiple hidden />
-              <span class="review-upload-icon" aria-hidden="true">🖼</span>
-              <span class="review-upload-title" data-en="Click to add photos">Kliknite pre pridanie fotografií</span>
-              <span class="review-upload-hint" data-en="or drag them here">alebo ich potiahnite</span>
-            </label>
+              <h3 data-en="Add photos">Pridať fotografie</h3>
+              <p class="review-optional" data-en="Optional">Voliteľné</p>
+              <label class="review-upload">
+                <input type="file" accept="image/*" multiple hidden />
+                <span class="review-upload-icon" aria-hidden="true">🖼</span>
+                <span class="review-upload-title" data-en="Click to add photos">Kliknite pre pridanie fotografií</span>
+                <span class="review-upload-hint" data-en="or drag them here">alebo ich potiahnite</span>
+              </label>
 
-            <label class="checkbox-label review-consent">
-              <input type="checkbox" name="consent" required />
-              <span data-en="I honestly declare that this review is based solely on my personal experience and expresses my genuine opinion. I have no ownership or personal connection to this business and did not receive any financial or material reward for writing it.">Čestne vyhlasujem, že táto recenzia vychádza výhradne z mojej osobnej skúsenosti a vyjadruje môj skutočný názor. Nie som s týmto podnikom nijako majetkovo ani osobne prepojený a za jej napísanie som nedostal žiadnu finančnú ani materiálnu odmenu.</span>
-            </label>
+              <label class="checkbox-label review-consent">
+                <input type="checkbox" name="consent" required />
+                <span data-en="I honestly declare that this review is based solely on my personal experience and expresses my genuine opinion. I have no ownership or personal connection to this business and did not receive any financial or material reward for writing it.">Čestne vyhlasujem, že táto recenzia vychádza výhradne z mojej osobnej skúsenosti a vyjadruje môj skutočný názor. Nie som s týmto podnikom nijako majetkovo ani osobne prepojený a za jej napísanie som nedostal žiadnu finančnú ani materiálnu odmenu.</span>
+              </label>
 
-            <button type="button" class="hero-cta review-submit" data-en="Continue">Pokračovať</button>
-            <p class="form-message" aria-live="polite"></p>
-          </div>
+              <button type="submit" class="hero-cta review-submit" id="submit-btn" data-en="Send review">Odoslať recenziu</button>
+              <p class="form-message" id="form-status" aria-live="polite"></p>
+            </div>
+          </form>
         </div>
       </div>
     </main>
@@ -133,6 +137,7 @@
       });
 
       const ratingGroup = document.querySelector('.rating-circles');
+      const ratingInput = document.getElementById('rating-input');
       if (ratingGroup) {
         const circles = Array.from(ratingGroup.querySelectorAll('.rating-circle'));
         let selected = 0;
@@ -148,6 +153,9 @@
           circle.addEventListener('click', () => {
             selected = index + 1;
             ratingGroup.setAttribute('data-rating', String(selected));
+            if (ratingInput) {
+              ratingInput.value = String(selected);
+            }
             paint(selected);
           });
         });
@@ -155,12 +163,20 @@
         ratingGroup.addEventListener('mouseleave', () => paint(selected));
       }
 
-      const submitButton = document.querySelector('.review-submit');
-      if (submitButton) {
-        submitButton.addEventListener('click', () => {
+      const reviewForm = document.getElementById('recenzia-form');
+      if (reviewForm && window.emailjs) {
+        emailjs.init('KT_DMzDG0pPAZ5Rjf');
+
+        reviewForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+
           const isEn = window.agotaCurrentLang && window.agotaCurrentLang() === 'en';
-          const formMessage = document.querySelector('.review-text-block .form-message');
+          const formMessage = document.getElementById('form-status');
+          const submitBtn = document.getElementById('submit-btn');
           const consent = document.querySelector('.review-consent input[type="checkbox"]');
+          const emailInput = document.getElementById('email');
+          const email = emailInput ? emailInput.value.trim() : '';
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
           if (consent && !consent.checked) {
             if (formMessage) {
@@ -172,28 +188,50 @@
             return;
           }
 
-          const rating = ratingGroup ? ratingGroup.getAttribute('data-rating') : '0';
-          const title = document.querySelector('.review-title-input').value.trim();
-          const text = document.querySelector('.review-textarea').value.trim();
-
-          const subject = 'Nová recenzia – Agota Food Truck' + (title ? ' – ' + title : '');
-          const bodyLines = [
-            'Hodnotenie: ' + (rating || '0') + ' / 5',
-            title ? 'Názov recenzie: ' + title : null,
-            '',
-            text || '(recenzia nebola vyplnená)',
-          ].filter((line) => line !== null);
-
-          const mailto = 'mailto:agotatruck@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyLines.join('\n'));
-
-          if (formMessage) {
-            formMessage.textContent = isEn
-              ? 'Opening your email client to send the review to agotatruck@gmail.com...'
-              : 'Otvára sa e-mailový klient na odoslanie recenzie na agotatruck@gmail.com...';
-            formMessage.classList.add('form-message--success');
+          if (!email || !emailPattern.test(email)) {
+            if (formMessage) {
+              formMessage.textContent = isEn
+                ? 'Please enter a valid email address before submitting.'
+                : 'Prosím, zadajte platnú e-mailovú adresu pred odoslaním.';
+              formMessage.classList.remove('form-message--success');
+            }
+            if (emailInput) {
+              emailInput.focus();
+            }
+            return;
           }
 
-          window.location.href = mailto;
+          submitBtn.disabled = true;
+          submitBtn.textContent = isEn ? 'Sending...' : 'Odosielam...';
+
+          emailjs.sendForm('service_bwrw2kr', 'template_xyn1w9m', reviewForm)
+            .then(() => {
+              if (formMessage) {
+                formMessage.textContent = isEn
+                  ? 'Thank you, your review has been sent successfully!'
+                  : 'Ďakujeme, vaša recenzia bola úspešne odoslaná!';
+                formMessage.classList.add('form-message--success');
+              }
+              reviewForm.reset();
+              ratingGroup.setAttribute('data-rating', '0');
+              if (ratingInput) {
+                ratingInput.value = '0';
+              }
+              ratingGroup.querySelectorAll('.rating-circle').forEach((circle) => circle.classList.remove('is-filled'));
+            })
+            .catch((err) => {
+              if (formMessage) {
+                formMessage.textContent = isEn
+                  ? 'An error occurred, please try again.'
+                  : 'Nastala chyba, skúste to prosím znova.';
+                formMessage.classList.remove('form-message--success');
+              }
+              console.error(err);
+            })
+            .finally(() => {
+              submitBtn.disabled = false;
+              submitBtn.textContent = isEn ? 'Send review' : 'Odoslať recenziu';
+            });
         });
       }
     </script>
